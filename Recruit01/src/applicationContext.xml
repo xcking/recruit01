@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd   
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+    http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
+	
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="oracle.jdbc.OracleDriver" />
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:orcl" />
+		<!-- <property name="`" value="org.hibernate.dialect.Oracle9Dialect"/> -->
+		<property name="user" value="recruit" />
+		<property name="password" value="123" />
+		<property name="initialPoolSize" value="10" />
+		<property name="minPoolSize" value="2" />
+		<property name="maxPoolSize" value="100" />
+		<property name="idleConnectionTestPeriod" value="60" />
+		<property name="maxIdleTime" value="60" />
+		<property name="acquireIncrement" value="10" />
+	</bean>
+
+	<!-- <bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="configLocation"
+			value="classpath:hibernate.cfg.xml">
+		</property>
+	</bean> -->
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- <property name="mappingResources">		实体映射文件路径
+			<list>
+				<value>com/cx/entity/Driver.hbm.xml</value>
+				<value>com/cx/entity/Office.hbm.xml</value>
+				<value>com/cx/entity/Driverdetails.hbm.xml</value>
+				<value>com/cx/entity/Company.hbm.xml</value>
+				<value>com/cx/entity/Job.hbm.xml</value>
+			</list>
+		</property> -->
+		<property name="mappingLocations">
+			<list>
+				<value>classpath:com/cx/entity/*.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle9Dialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.current_session_context_class">
+					org.springframework.orm.hibernate3.SpringSessionContext
+				</prop>
+				<!-- <prop key="hibernate.transaction.factory_class">
+ 　　				org.hibernate.transaction.JDBCTransactionFactory
+ 				</prop> -->
+			</props>
+		</property>
+	</bean>
+	<!-- dao层 -->
+	<bean id="driverDao" class="com.cx.dao.Impl.DriverDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="driverDetailsDao" class="com.cx.dao.Impl.DriverDetailsDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="companyDao" class="com.cx.dao.Impl.CompanyDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="jobDao" class="com.cx.dao.Impl.JobDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="applicantDao" class="com.cx.dao.Impl.ApplicantDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="appraiseDao" class="com.cx.dao.Impl.AppraiseDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="adminDao" class="com.cx.dao.Impl.AdminDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="appealDao" class="com.cx.dao.Impl.AppealDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="companyappraiseDao" class="com.cx.dao.Impl.CompanyappraiseDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<!-- 添加事务管理 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED"
+				read-only="false" />
+			<tx:method name="update*" propagation="REQUIRED"/>
+			<tx:method name="delete*" propagation="REQUIRED"/>
+			<tx:method name="*Register" propagation="REQUIRED"/>
+			<tx:method name="find*" propagation="REQUIRED"/>
+			<tx:method name="*" propagation="SUPPORTS" read-only="true"/>
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<aop:pointcut expression="execution(* com.cx.biz.*.*(..))" id="bizMethods"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="bizMethods"/>
+	</aop:config>
+	
+	<!-- biz层 -->
+	<bean id="driverBiz" class="com.cx.biz.Impl.DriverBizImpl">
+		<property name="driverDao"  ref="driverDao"/>
+	</bean>
+	<bean id="driverDetailsBiz" class="com.cx.biz.Impl.DriverDetailsBizImpl">
+		<property name="driverDetailsDao"  ref="driverDetailsDao"/>
+	</bean>
+	<bean id="companyBiz" class="com.cx.biz.Impl.CompanyBizImpl">
+		<property name="companyDao"  ref="companyDao"/>
+	</bean>
+	<bean id="jobBiz" class="com.cx.biz.Impl.JobBizImpl">
+		<property name="jobDao"  ref="jobDao"/>
+	</bean>
+	<bean id="applicantBiz" class="com.cx.biz.Impl.ApplicantBizImpl">
+		<property name="applicantDao"  ref="applicantDao"/>
+	</bean>
+	<bean id="appraiseBiz" class="com.cx.biz.Impl.AppraiseBizImpl">
+		<property name="appraiseDao" ref="appraiseDao"></property>
+	</bean>
+	<bean id="adminBiz" class="com.cx.biz.Impl.AdminBizImpl">
+		<property name="adminDao" ref="adminDao"></property>
+	</bean>
+	<bean id="appealBiz" class="com.cx.biz.Impl.AppealBizImpl">
+		<property name="appealDao" ref="appealDao"></property>
+	</bean>
+	<bean id="companyappraiseBiz" class="com.cx.biz.Impl.CompanyappraiseBizImpl">
+		<property name="companyappraiseDao" ref="companyappraiseDao"></property>
+	</bean>
+	<!-- action -->
+	<bean id="driverAction" class="com.cx.action.DriverAction">
+		<property name="driverBiz" ref="driverBiz"/>
+		<property name="driverDetailsBiz" ref="driverDetailsBiz"></property>
+	</bean>
+	<bean id="driverDetailsAction" class="com.cx.action.DriverDetailsAction">
+		<property name="driverDetailsBiz" ref="driverDetailsBiz"></property>
+	</bean>
+	<bean id="companyAction" class="com.cx.action.CompanyAction">
+		<property name="companyBiz" ref="companyBiz"/>
+	</bean>
+	<bean id="jobAction" class="com.cx.action.JobAction">
+		<property name="jobBiz" ref="jobBiz"/>
+		<property name="companyBiz" ref="companyBiz"/>
+		<property name="appraiseBiz" ref="appraiseBiz"/>
+		<property name="applicantBiz" ref="applicantBiz"/>
+		<property name="appealBiz" ref="appealBiz"/>
+	</bean>
+	<bean id="applicantAction" class="com.cx.action.ApplicantAction">
+		<property name="applicantBiz" ref="applicantBiz"/>
+		<property name="driverDetailsBiz" ref="driverDetailsBiz"/>
+		<property name="jobBiz" ref="jobBiz"/>
+	</bean>
+	<bean id="appraiseAction" class="com.cx.action.AppraiseAction">
+		<property name="appraiseBiz" ref="appraiseBiz"/>
+		<property name="jobBiz" ref="jobBiz"/>
+	</bean>	
+	<bean id="adminAction" class="com.cx.action.AdminAction">
+		<property name="adminBiz" ref="adminBiz"></property>
+	</bean>
+	<bean id="appealAction" class="com.cx.action.AppealAction">
+		<property name="appealBiz" ref="appealBiz"></property>
+		<property name="jobBiz" ref="jobBiz"/>
+		<property name="companyBiz" ref="companyBiz"/>
+	</bean>
+	<bean id="companyAppraiseAction" class="com.cx.action.CompanyappraiseAction">
+		<property name="companyappraiseBiz" ref="companyappraiseBiz"/>
+		<property name="applicantBiz" ref="applicantBiz"/>
+	</bean>
+</beans>

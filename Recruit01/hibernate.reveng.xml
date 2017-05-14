@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table name="APPLICANT" schema="RECRUIT">
+		<primary-key>
+			<generator class="sequence"></generator>
+			<key-column name="APP_ID" type="java.lang.Integer" />
+		</primary-key>
+		<column name="DRIVER_ID" type="java.lang.Integer"></column>
+		<column name="JOB_ID" type="java.lang.Integer"></column>
+		<column name="ACCEPT_TIME" type="java.sql.Timestamp"></column>
+		<column name="COMPANY_ID" type="java.lang.Integer"></column>
+		<column name="HIRE"></column>
+	</table>
+	<table name="APPRAISE" schema="RECRUIT">
+		<primary-key>
+			<generator class="sequence"></generator>
+			<key-column name="ID" type="java.lang.Integer" />
+		</primary-key>
+		<column name="JOB_ID" type="java.lang.Integer"></column>
+		<column name="DRIVER_ID" type="java.lang.Integer"></column>
+	</table>
+	<table name="COMPANY" schema="RECRUIT">
+		<primary-key>
+			<generator class="sequence"></generator>
+			<key-column name="COMPANY_ID" type="java.lang.Integer" />
+		</primary-key>
+		<column name="COMPANY_POINT" type="java.lang.Integer"></column>
+	</table>
+	<table name="DRIVER" schema="RECRUIT">
+		<primary-key>
+			<generator class="sequence"></generator>
+			<key-column name="DRIVER_ID" type="java.lang.Integer" />
+		</primary-key>
+		<column name="DRIVER_AGE" type="java.lang.Integer"></column>
+	</table>
+	<table name="DRIVERDETAILS" schema="RECRUIT">
+		<primary-key>
+			<generator class="sequence"></generator>
+			<key-column name="DRIVER_DETAILS_ID"
+				type="java.lang.Integer" />
+		</primary-key>
+		<column name="DIRVERAGE" type="java.lang.Integer"></column>
+		<column name="DRIVER_ID" type="java.lang.Integer"></column>
+		<column name="DRIVER_POINT" type="java.lang.Integer"></column>
+	</table>
+	<table name="JOB" schema="RECRUIT">
+		<primary-key>
+			<generator class="sequence"></generator>
+			<key-column name="JOB_ID" type="java.lang.Integer" />
+		</primary-key>
+		<column name="JOB_RECRUITMENT_NUMBER"
+			type="java.lang.Integer">
+		</column>
+		<column name="JOB_COMPANY" type="java.lang.Integer"></column>
+	</table>
+	<table name="ADMIN" schema="RECRUIT">
+		<primary-key>
+			<generator class="sequence"></generator>
+			<key-column name="ID" type="java.lang.Integer" />
+		</primary-key>
+	</table>
+	<table name="APPEAL" schema="RECRUIT">
+		<primary-key>
+			<generator class="sequence"></generator>
+			<key-column name="ID" type="java.lang.Integer" />
+		</primary-key>
+		<column name="DRIVER_ID" type="java.lang.Integer"></column>
+		<column name="JOB_ID" type="java.lang.Integer"></column>
+	</table>
+	<table name="COMPANYAPPRAISE" schema="RECRUIT">
+		<primary-key>
+			<generator class="sequence"></generator>
+			<key-column name="ID" type="java.lang.Integer" />
+		</primary-key>
+		<column name="DRIVER_ID" type="java.lang.Integer"></column>
+		<column name="COMPANY_ID" type="java.lang.Integer"></column>
+		<column name="ARRIVE" type="java.lang.Integer"></column>
+		<column name="LOSS" type="java.lang.Integer"></column>
+		<column name="RATED" type="java.lang.Integer"></column>
+		<column name="JOB_ID" type="java.lang.Integer"></column>
+	</table>
+</hibernate-reverse-engineering>

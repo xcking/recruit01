@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3" />
+		<meta http-equiv="description" content="This is my page" />
+<style type="text/css">
+body{padding: 0px; margin: 0px; }
+a{text-decoration: none;}
+
+.c_top {
+	height:50px;
+	width:100%; 
+	background-color:#33b5e5;
+}
+.c_top_l {
+	width:202px;
+	float:left;
+	height:50px;
+	text-align:right;
+	line-height: 50px;
+}
+.c_top_z{
+	width:102px;float:left;
+	height:50px;
+	text-align:center;
+	line-height: 50px; background-color:#16a0d3;
+}
+.c_top_s{
+	width:102px;float:left;
+	height:50px;
+	text-align:center;
+	line-height: 50px; 
+}
+.c_top_r {
+	width:180px;
+	float:right;
+	text-align:right;
+	line-height: 50px;
+	height: 50px;
+}
+.c_top_r ul {
+	width:180px;
+	clear:both;
+}
+.c_top_r ul li {
+	list-style:none;
+	float:left;
+	height:24px;
+	line-height:24px;
+	padding-left:3px;
+	padding-right:3px;
+	font-size: 12px;
+}
+.c_main {
+	width:100%;
+	height:auto;
+}
+</style>
+	</head>
+	<body>
+		<div class="c_top">
+		<div class="c_top_l" >
+			<a href="#" ><img src="images/houtailogo.png" border="0" /></a>
+		</div>
+		
+		<div class="c_top_r">
+			<a href="#" style="color:#fff;" onClick="tuichu();"><strong>ÍË³ö&nbsp;&nbsp;&nbsp;&nbsp;</strong></a>
+		</div>
+		<div class="c_top_r">
+			<a href="#" style="color:#fff; font-size:14px;">Ä³Ä³Ä³,»¶Ó­Äú</a>
+		</div>
+	</div>
+		<div id="refresh"></div>
+<script type="text/javascript">
+		function tuichu(){
+			if (!confirm("È·ÈÏÒªÍË³ö£¿")) {
+		        return false;
+		    }
+			$.ajax({
+				url : "<%=request.getContextPath()%>/admin/AdminLoginOut.do",
+				type : 'POST',
+				cache : false,
+				dataType : "json",
+				success : function(data) {
+			   		if(data["state"] == "success"){
+			   			window.location.href="<%=request.getContextPath()%>/index.jsp";
+			   		}else{
+			   			alert("ÍË³öÊ§°Ü!");
+			   		}
+				}
+			});
+		}
+		</script>
+	</body>
+</html>

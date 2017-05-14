@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>招募信息</title>
+<link rel="stylesheet" type="text/css" href="css/index.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="stylesheet" type="text/css" href="css/left.css" />
+	<script type="text/javascript" src="easyui-1.3.2/jquery-1.8.0.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.9.2.custom.js"></script>
+	<link href="css/jquery-ui-1.9.2.custom.css" rel="stylesheet"type="text/css" />
+	<script type="text/javascript" src="js/autoHeight.js"></script>
+	<script type="text/javascript" src="js/layout.js"></script>
+</head>
+<body>
+
+<div class="divHi25"></div>
+
+<div style="width:800px; height:50px;">
+		<table width="637" height="30" border="0" >
+		<tr>
+			<td width="148" class="divtz"><span class="lanse" style="font-size:16px;"><strong>应聘职位：</strong></span></td>
+			
+		  <td width="269"><input type="text" id="keywords" name="keywords"  style="width:250px;" value="" class="input normal" />&nbsp;&nbsp;&nbsp;</td>
+		  <td width="206" class="divtz"><div align="left">
+		    <input type="button" class="btn" value="查询" />
+	      </div></td>
+		 </tr>
+  </table>
+</div>
+
+<div class="divHi25" style="border-top:1px solid #CCCCCC;"></div>
+<div id="tit">
+	<table id="datas" class="tab_tit" cellspacing="0" cellpadding="0" style="overflow: scroll;">
+	<tbody>
+		<tr class="trW" style="height:41px;">
+			<td width="130px;" colspan="1" rowspan="1">应聘职位</td>
+			<td width="165px" colspan="1" rowspan="1">投递时间</td>
+			<td width="80px" colspan="1" rowspan="1">应聘人姓名</td>
+			<td width="80px" colspan="1" rowspan="1">应聘人年龄</td>
+			<td width="80px" colspan="1" rowspan="1">应聘人详情</td>
+			<td width="280px" colspan="1" rowspan="1">投递状态</td>
+		</tr>
+		<tr class="trClass" style="height:45px;">
+			<td>食品运输</td>
+			<td>2017-05-04 15:04:33</td>
+			<td>jim</td>
+			<td>40</td>
+			<td name="detail">
+				<input type="button" class="btn" value="详情"  onclick="xiangqin(1)" />&nbsp;
+			</td>
+			<td name="status">
+				<input type="button" class="btn" value="招聘"  onclick="ifzp(1)" />&nbsp;
+				<input type="button" class="btn yellow" value="不招聘"  onclick="ifzp(2)" />&nbsp;
+				<input type="button" class="btn green" value="移交"  onclick="ifzp(3)" />&nbsp;
+			</td>
+		</tr>
+		<tr class="trClass" style="height:45px;">
+			<td>食品运输</td>
+			<td>2017-05-04 15:04:33</td>
+			<td>jim</td>
+			<td>40</td>
+			<td name="detail">
+				<input type="button" class="btn" value="详情"  onclick="xiangqin(1)" />&nbsp;
+			</td>
+			<td name="status">
+				<input type="button" class="btn" value="招聘"  onclick="ifzp(1)" />&nbsp;
+				<input type="button" class="btn yellow" value="不招聘"  onclick="ifzp(2)" />&nbsp;
+				<input type="button" class="btn green" value="移交"  onclick="ifzp(3)" />&nbsp;
+			</td>
+		</tr>
+		<tr class="trClass" style="height:45px;">
+			<td>食品运输</td>
+			<td>2017-05-04 15:04:33</td>
+			<td>jim</td>
+			<td>40</td>
+			<td name="detail">
+				<input type="button" class="btn" value="详情"  onclick="xiangqin(1)" />&nbsp;
+			</td>
+			<td name="status">
+				<input type="button" class="btn" value="招聘"  onclick="ifzp(1)" />&nbsp;
+				<input type="button" class="btn yellow" value="不招聘"  onclick="ifzp(2)" />&nbsp;
+				<input type="button" class="btn green" value="移交"  onclick="ifzp(3)" />&nbsp;
+			</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+<div class="fenye" align="center">
+	<label>共<span class="recordCount">10</span>条记录&nbsp;&nbsp;当前第<span class="currentIndex">1</span>页&nbsp;&nbsp;共<span class="totalPages">1</span>页</label>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a class="page_start"href="#">首页</a>
+		<a class="page_back" href="#">上一页 </a>
+		<a class="page_next"  href="#">下一页</a>
+		<a class="page_end"  href="#">末页</a>
+		<input type="hidden" value="10" style="width:25px;" class="pageSize"/>
+</div>
+<script type="text/javascript">
+	function xiangqin(idd){
+         art.dialog.open("ypzXiangqing.html?id="+idd,{
+            title:'应聘者详情',
+            lock:'true',
+            opacity:'0.5',
+            width:'830px',
+            height:'370px'
+       });
+	}
+	function ifzp(idd){
+        if(idd==1){
+			//招聘
+		}else if(id==2){
+			//不招聘
+		}else if(id==3){
+			//提交上级
+		}
+	}
+</script>
+</body>
+</html>
+

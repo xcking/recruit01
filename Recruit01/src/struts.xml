@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="company" extends="struts-default">
+		<action name="company_*" class="com.cx.action.CompanyAction" method="{1}">
+			<result name="toRegister">/company/companyRegister.jsp</result>
+			<result name="toCompanyLogin">/company/companyLogin.jsp</result>
+			<result name="companyLoginSuccess">/company/companyHomepage.jsp</result>
+			<result name="searchResult">/Admin/CompanyUpdate.jsp</result>
+			<result name="levelUpdate" type="chain">appeal_getAllAppeal</result>
+		</action>
+	</package>
+	<package name="job" extends="struts-default">
+		<action name="job_*" class="com.cx.action.JobAction" method="{1}">
+			<result name="toAddJob">/job/AddJob.jsp</result>
+			<result name="addSuccess">/job/AddJobSuccess.jsp</result>
+			<result name="companyJob">/job/companyJobList.jsp</result>
+			<result name="zmInfo">/driver/zmInfo.jsp</result>
+			<result name="toJobDetails">/job/jobDetails.jsp</result>
+			<result name="deleteSuccess" type="chain">appeal_getAllAppeal</result>
+			<result name="delete" type="chain">job_findJobByCompany</result>
+		</action>
+		<action name="applicant_*" class="com.cx.action.ApplicantAction" method="{1}">
+			<result name="ApplicantDetails">/job/ApplicantDetails.jsp</result>
+			<result name="applicantSuccess" type="chain">job_getAllJob</result>
+			<result name="findHire">/driver/findDriverHire.jsp</result>
+			<result name="companyApplicant">/job/ApplicantList.jsp</result>
+			<result name="ApplicantSuccess" type="chain">applicant_findApplicantByCompany</result>
+		</action>
+		<action name="appraise_*" class="com.cx.action.AppraiseAction" method="{1}">
+			<result name="toAppraise">/job/AddAppraise.jsp</result>
+			<result name="addAppraiseSuccess" type="chain">applicant_findAppByDriver</result>
+		</action>
+		<action name="appeal_*" class="com.cx.action.AppealAction" method="{1}" >
+			<result name="toAppealList">/Admin/AdminHome.jsp</result>
+			<result name="AddAppealSuccess" type="chain">applicant_findAppByDriver</result>
+			<result name="toAddAppeal">/job/AddAppeal.jsp</result>
+			<result name="toHandle">/Admin/AppealHandle.jsp</result>
+			<result name="HandleSuccess" type="chain">appeal_getAllAppeal</result>
+			<result name="MyAppeal">/driver/MyAppeal.jsp</result>
+		</action>
+		<action name="companyAppraise_*" class="com.cx.action.CompanyappraiseAction" method="{1}">
+			<result name="toCompanyAppraise">/company/ComapnyAppraise.jsp</result>
+		</action>
+	</package>
+	<package name="driver" extends="struts-default">
+		<action name="driver_*" class="com.cx.action.DriverAction" method="{1}">
+			<result name="toLogin">/driver/driverLogin.jsp</result>
+			<result name="toAddDetails">/driver/DriverDetails.jsp</result>
+			<!-- <result name="getAllJob" type="chain">job_getAllJob</result> -->
+			<result name="toHomePage">/driver/driverHomePage.jsp</result>
+			<result name="toRegister">/driver/driverRegister.jsp</result>
+		</action>
+		<action name="driverDetails_*" class="com.cx.action.DriverDetailsAction" method="{1}">
+				<result name="getAllJob" type="chain">job_getAllJob</result>
+				<result name="toAppDriverDetails">/job/AppDriver.jsp</result>
+				<result name="updateSuccess">/driver/driverHomePage.jsp</result>
+		</action>
+	</package>
+	<package name="admin" extends="struts-default">
+		<action name="admin_*" class="com.cx.action.AdminAction" method="{1}">
+			<result name="adminHomePage" type="chain">appeal_getAllAppeal</result>
+			<result name="toLoginAdmin">/Admin/AdminLogin.jsp</result>
+		</action>
+	</package>
+</struts>    

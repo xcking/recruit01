@@ -1,0 +1,17 @@
+@charset "utf-8";
+body{padding: 0px; margin: 0px; }
+*{font-family: "Microsoft YaHei";}
+.ui-box{ width:222px;}
+.newtop{ width:202px; height:45px; background:url(../images/zuocai1.jpg);   border-bottom: 1px solid #ddd;
+    border-top: 1px solid #f4f4f4;border-right: 1px solid #dbdbdb; }
+.newtop span {color: #222; line-height: 45px; padding-left: 15px; font-size: 14px;}
+a:hover, a:link, a:visited {color: #2a72c5;    text-decoration: none;font-size:14px;}
+a {color: #333;  text-decoration: none;}
+#bigClasss { width:202px; border-right: 1px solid #dbdbdb; overflow:hidden;  background-color:#f6f7f7;}
+#knav { width:202px; list-style-type: none; list-style:none; text-align:left;}
+#knav li {border-bottom: 1px solid #dbdbdb; height:40px; line-height:40px; font-size:14px; }
+#knav li a{ padding-left: 40px; }
+.itmes1{}
+.itmes1 a{ color:#333; }
+.itmes2{background-color: #33b5e5;}
+.itmes2 a{ color: #fff;}

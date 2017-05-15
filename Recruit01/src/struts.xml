@@ -19,6 +19,7 @@
 			<result name="toJobDetails">/job/jobDetails.jsp</result>
 			<result name="deleteSuccess" type="chain">appeal_getAllAppeal</result>
 			<result name="delete" type="chain">job_findJobByCompany</result>
+			<result name="adminJobDetails">/Admin/AdminJobDetails.jsp</result>
 		</action>
 		<action name="applicant_*" class="com.cx.action.ApplicantAction" method="{1}">
 			<result name="ApplicantDetails">/job/ApplicantDetails.jsp</result>

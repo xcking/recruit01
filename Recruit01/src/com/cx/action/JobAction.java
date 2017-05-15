@@ -106,6 +106,14 @@ public class JobAction extends BaseAction implements ModelDriven<Job> {
 		return "findJobError";
 	}
 	/*
+	 * 管理员查看被投诉的职位详情
+	 */
+	public String adminJobDetails(){
+		Job job1 = jobBiz.findJobById(job.getJobId());
+		request.setAttribute("job", job1);
+		return "adminJobDetails";
+	}
+	/*
 	 * 企业出现虚假信息，删除职位后扣除企业积分
 	 */
 	public String deleteJob() {

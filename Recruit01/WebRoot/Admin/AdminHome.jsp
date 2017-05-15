@@ -78,7 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<a href="appeal_getAllAppeal.action">投诉管理</a>
 					</li>
 					<li class="itmes1">
-						<a href="gly_gsgl.html">公司管理</a>
+						<a href="company_getAllCompany.action">公司管理</a>
 					</li>
 				</ul>
 			</div>

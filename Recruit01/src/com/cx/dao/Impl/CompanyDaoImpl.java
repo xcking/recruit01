@@ -97,4 +97,10 @@ public class CompanyDaoImpl extends BaseHibDao implements CompanyDao {
 		
 	}
 
+	@Override
+	public List<Company> getAllCompany() {
+		String hql = "from Company";
+		return super.search(hql, null);
+	}
+
 }

@@ -16,4 +16,6 @@ public interface CompanyDao {
 	public void deleteCompany(int companyId);
 	public void updataCompany(Company company);
 	public void updateCompanyLevel(int companyId,String companyLevel);
+	
+	public List<Company> getAllCompany();
 }

@@ -59,5 +59,10 @@ public class CompanyBizImpl implements CompanyBiz {
 		companyDao.updateCompanyLevel(companyId, companyLevel);
 	}
 
+	@Override
+	public List<Company> getAllCompany() {
+		return companyDao.getAllCompany();
+	}
+
 
 }

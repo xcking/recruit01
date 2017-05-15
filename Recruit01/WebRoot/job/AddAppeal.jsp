@@ -52,7 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body>
-	<iframe id="headiFrame" src="top.jsp" frameborder="no" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes" class="divtop1"></iframe>
+	<iframe id="headiFrame" src="driver/top.jsp" frameborder="no" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes" class="divtop1"></iframe>
 	<div style="width: 100%; padding: 0px; margin-top:2px;">
 		<div class="ui-box" style="float: left;">
 			<div id="bigClasss">
@@ -83,6 +83,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<td height="44" class="divtz">职位名称：</td>
 			<td>
 				<input type="text" class="input " value="${job.jobName }" />
+				<input type="hidden" name="jobId" value="${job.jobId }"/>
 			</td>
 		  </tr>
 		  

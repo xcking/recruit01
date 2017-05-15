@@ -41,10 +41,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div id="bigClasss">
 				<ul id="knav">
 					<li class="itmes2">
-						<a href="gly_tsgl.html">投诉管理</a>
+						<a href="appeal_getAllAppeal.action">投诉管理</a>
 					</li>
 					<li class="itmes1">
-						<a href="gs_yfbzw.html">公司管理</a>
+						<a href="company_getAllCompany.action">公司管理</a>
 					</li>
 				</ul>
 			</div>
@@ -102,6 +102,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<td height="44" class="divtz">具&nbsp;体&nbsp;描&nbsp;述：</td>
 			<td>&nbsp;&nbsp;${job.jobDescribe }</td>
 		  </tr>
+		  
   </table>
  </form>
 		<div class="divHi25"></div>

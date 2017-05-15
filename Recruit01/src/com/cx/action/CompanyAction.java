@@ -72,4 +72,9 @@ public class CompanyAction extends BaseAction implements ModelDriven<Company>{
 		companyBiz.updateCompanyLevel(company.getCompanyId(), company.getCompanyLevel());
 		return "levelUpdate";
 	}
+	public String getAllCompany(){
+		List<Company> list = companyBiz.getAllCompany();
+		request.setAttribute("cList", list);
+		return "toCompanyAdmin";
+	}
 }
